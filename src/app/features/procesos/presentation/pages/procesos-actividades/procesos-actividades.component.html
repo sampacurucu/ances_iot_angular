@@ -1,0 +1,72 @@
+<app-header></app-header>
+
+<div class="container">
+  <h2 class="title">Procesos - Actividades</h2>
+
+  <div class="content">
+    <!-- Sección izquierda -->
+    <div class="left-panel">
+      <label for="proceso"><strong>PROCESO</strong></label>
+      <select id="proceso" class="dropdown" [(ngModel)]="selectedProcesoId" (change)="onProcesoChange()">
+        <option disabled value="">Seleccione un proceso</option>
+        <option *ngFor="let proceso of procesos" [value]="proceso.id">
+          {{ proceso.name }}
+        </option>
+      </select>
+
+      <div class="spacer"></div>
+
+      <label for="actividad"><strong>ACTIVIDAD</strong></label>
+      <select id="actividad" class="dropdown" [(ngModel)]="selectedActividadId">
+        <option disabled value="">Seleccione una actividad</option>
+        <option *ngFor="let actividad of actividades" [value]="actividad.id">
+          {{ actividad.name }}
+        </option>
+      </select>
+
+      <div class="spacer"></div>
+
+      <div class="button-group">
+        <!-- <button class="btn agregar">Asignar actividad</button> -->
+        <button class="btn agregar" (click)="asignarActividad()">Asignar actividad</button>
+
+        <!-- <button class="btn agregar" >Guardar</button> -->
+        <button class="btn guardar" (click)="guardarAsignaciones()">Guardar</button>
+
+        <button class="btn cancelar"  (click)="cancelar()" >Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Sección derecha -->
+    <div class="right-panel">
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>Actividad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let actividad of actividadesAsignadas"
+            (click)="seleccionarActividad(actividad.id)"
+            [class.selected]="actividad.id === selectedActividadAsignadaId"
+          >
+            <td>{{ actividad.name }}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+      <div class="delete-button">
+        <button class="btn eliminar" (click)="eliminarActividad()">Eliminar actividad</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-error" *ngIf="mensajeError">
+  <div class="modal-content">
+    <p>{{ mensajeError }}</p>
+    <button (click)="mensajeError = ''">Cerrar</button>
+  </div>
+</div>

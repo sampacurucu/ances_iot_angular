@@ -1,0 +1,73 @@
+<app-header></app-header>
+
+<div class="new-area-container">
+    <!-- <p *ngIf="mensajeError" class="error">{{ mensajeError }}</p> -->
+
+    <h2>Agregar Área de Producción</h2>
+  
+    <div class="form-area">
+      <!-- Lado izquierdo -->
+      <div class="form-left">
+        <div class="form-group">
+          <label for="nombre">NOMBRE:</label>
+          <input type="text" id="nombre" [(ngModel)]="nombre" placeholder="Ingrese un nombre..." />
+        </div>
+  
+        <div class="form-group">
+          <label for="finca">FINCA:</label>
+          <select id="finca" [(ngModel)]="finca">
+            <!-- <option disabled selected>Seleccione finca a la que pertenece</option> -->
+            <option disabled value="">Seleccione finca a la que pertenece</option>
+            <option *ngFor="let finca of fincas" [value]="finca.id">
+              {{ finca.nombre }}
+            </option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="ubicacion">UBICACIÓN DENTRO DE LA FINCA:</label>
+          <input type="text" id="ubicacion"  [(ngModel)]="ubicacion" placeholder="Ingrese una ubicacion..." />
+        </div>
+  
+  
+  
+        <div class="form-group">
+            <label>CORRESPONDENCIA ÁREA:</label>
+            <div class="checkbox-group">
+              <label><input type="radio" name="correspondencia" [(ngModel)]="correspondencia" value="campo" /> Campo</label>
+              <label><input type="radio" name="correspondencia" [(ngModel)]="correspondencia" value="casona" /> Casona</label>
+            </div>
+          </div>
+          
+        <div class="button-group">
+          <button class="btn btn-green" (click)="agregarArea()">Agregar</button>
+          <button class="btn btn-red" (click)="cancelar()">Cancelar</button>
+        </div>
+      </div>
+  
+      <!-- Lado derecho -->
+      <div class="form-right">
+  
+        <div class="preview-box">
+            <img [src]="imagePreview" *ngIf="imagePreview" class="preview-img" />
+          </div>
+        
+          <!-- input oculto -->
+          <input type="file" accept="image/*" hidden #fileInput (change)="onImageSelected($event)" />
+        
+          <!-- Botón que dispara el input -->
+          <button class="btn btn-blue" (click)="fileInput.click()">Cargar Imagen Área</button>
+        
+          <p class="image-note">Vista imagen del área de producción</p>
+        
+      </div>
+    </div>
+    <div class="modal-error" *ngIf="mensajeError">
+        <div class="modal-content">
+          <p>{{ mensajeError }}</p>
+          <button (click)="mensajeError = ''">Cerrar</button>
+        </div>
+      </div>
+      
+  </div>
+  

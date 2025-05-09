@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div class="espacio-header"></div>
+<h2>Área de Producción (Campo , Casona)</h2>
+
+<div class="areas-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre Área Producción</th>
+        <th>Finca</th>
+        <th>Productor</th>
+        <th>Ubicación</th>
+        <th>Tipo Área</th>
+        <th>Imagen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let area of areas">
+        <td>{{ area.areaName }}</td>
+        <td>{{ area.farmNombre }}</td>
+        <td>{{ area.productor }}</td>
+        <td>{{ area.ubicacion }}</td>
+        <td>{{ area.correspondencia }}</td>
+        <td>
+          <button (click)="visualizarImagen(area)">Visualizar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="imagen-preview">
+    <div class="preview-box">
+      <img *ngIf="areaSeleccionada?.imagen"
+           [src]="'data:image/png;base64,' + areaSeleccionada!.imagen"
+           alt="Vista área de producción" />
+      <p *ngIf="!areaSeleccionada">Vista del área de producción</p>
+    </div>
+  </div>
+</div>
+
+<!-- Botones centrados debajo de la tabla -->
+<div class="botones-acciones">
+  <button class="btn-green" (click)="agregar()">Agregar</button>
+  <button class="btn-blue">Modificar</button>
+  <button class="btn-red">Eliminar</button>
+  <button class="btn-green" (click)="agregarPuntos()">Agregar Puntos Inteligentes</button>
+</div>

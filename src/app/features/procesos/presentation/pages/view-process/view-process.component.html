@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<div class="container">
+    <h2>Manejo Procesos y Actividades</h2>
+  
+    <div class="main-content">
+        <table class="process-table">
+            <thead>
+              <tr>
+                <th>Proceso</th>
+                <th>Actividades Asociadas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let process of processes">
+                <td>{{ process.processName }}</td>
+                <td>
+                  <ng-container *ngIf="process.activityNames.length > 0; else noActivities">
+                    {{ process.activityNames.join(', ') }}
+                  </ng-container>
+                  <ng-template #noActivities>
+                    <i>Sin actividades</i>
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+  
+      <div class="image-container">
+        <img src="assets/logo.png" alt="Farmer" />
+      </div>
+    </div>
+  
+    <div class="button-group">
+      <button class="btn add" >Agregar Proceso</button>
+      <button class="btn edit">Editar proceso</button>
+      <button class="btn delete">Eliminar proceso</button>
+      <button class="btn add" (click)="asignarActividades()">Asignar actividades</button>
+    </div>
+  </div>
+  

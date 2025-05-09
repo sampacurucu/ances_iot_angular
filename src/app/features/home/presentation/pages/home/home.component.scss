@@ -1,0 +1,21 @@
+.home-background {
+    // background-image: url('assets/fondo.jpg'); 
+    background-image: url('/assets/fondo.jpg');
+
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh - 60px); // ajusta si el header tiene otra altura
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .centered-text {
+      color: white;
+      font-size: 2rem;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px 30px;
+      border-radius: 10px;
+    }
+  }
+  

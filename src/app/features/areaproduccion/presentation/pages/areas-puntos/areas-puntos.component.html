@@ -1,0 +1,150 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="selectors">
+    <label>
+      FINCA
+      <select id="finca" [(ngModel)]="finca" (change)="onFincaChange($event)">
+        <option disabled value="">Seleccione finca a la que pertenece</option>
+        <option *ngFor="let finca of fincas" [value]="finca.id">
+          {{ finca.nombre }}
+        </option>
+      </select>
+    </label>
+  
+    <label>
+      ÁREA DE PRODUCCIÓN
+      <select [(ngModel)]="areaSeleccionadaId" (change)="onAreaChange($event)">
+        <option disabled value="">Seleccione área</option>
+        <option *ngFor="let area of areas" [value]="area.id">
+          {{ area.name }}
+        </option>
+      </select>
+    </label>
+  </div>
+  
+  <div class="main-section">
+    <!-- Caja gris -->
+    <div class="image-box-container">
+      <div class="box-contenido">
+        <!-- Imagen -->
+        <div class="image-box" (click)="colocarMarcador($event)">
+          <img *ngIf="imagenAreaSeleccionada" [src]="'data:image/png;base64,' + imagenAreaSeleccionada" alt="Vista previa" />
+          <img *ngIf="marcadorActivo"
+            class="marcador"
+            [src]="'assets/location.svg'" 
+            [ngStyle]="{
+              left: marcadorX + '%',
+              top: marcadorY + '%'
+            }"
+          />
+
+          <!-- Mostrar puntos guardados con nombre -->
+            <div
+            *ngFor="let p of puntos"
+            class="marcador-con-nombre"
+            [ngStyle]="{
+              left: p.x + '%',
+              top: p.y + '%'
+            }"
+            >
+            <span class="nombre-punto">{{ p.nombre }}</span>
+            <img src="assets/location.svg" class="marcador-icono" />
+            <!-- <span class="nombre-punto">{{ p.nombre }}</span> -->
+            </div>
+
+        </div>
+
+        <div class="lado-boton">
+          <button class="asignar-btn" (click)="abrirModal()">Asignar Punto Inteligente</button>
+        
+          <!-- Tabla debajo del botón -->
+          <table class="tabla-puntos">
+            <thead>
+              <tr>
+                <th>Nombre Punto</th>
+                <th>Nombre Dispositivo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let punto of puntos">
+                <td>{{ punto.nombre }}</td>
+                <td>{{ getNombreDispositivoById(punto.dispositivoId) }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+         
+      </div>
+    
+      <!-- Botón debajo de la imagen -->
+      <div class="center-button">
+        <button class="cancelar-caja-btn" (click)="cancelar()">Cancelar</button>
+        <!-- <button class="guardar-caja-btn">Guardar</button> -->
+        <button class="guardar-caja-btn" (click)="guardarListaDePuntos()">Guardar</button>
+
+      </div>
+    </div>
+    
+    
+  
+</div>
+
+<div class="modal" *ngIf="mostrarModal">
+  <div class="modal-content">
+    <h2>Agregar Punto Inteligente</h2>
+
+    <label>
+      NOMBRE:
+      <input type="text" [(ngModel)]="nombre" />
+    </label>
+
+    <label>
+      REFERENCIA UBICACIÓN
+      <input type="text" [(ngModel)]="referencia" />
+    </label>
+
+    <label>
+      UBICACIÓN AL INTERIOR
+      <input type="checkbox" [(ngModel)]="interior" />
+    </label>
+
+    <label>
+      ALTURA DEL PUNTO
+      <input type="number" [(ngModel)]="altura" /> (M)
+    </label>
+
+    <label>
+      DESCRIPCIÓN:
+      <textarea [(ngModel)]="descripcion"></textarea>
+    </label>
+
+    <label>
+      DISPOSITIVO:
+      <select [(ngModel)]="dispositivoId">
+        <option disabled value="">Seleccione un dispositivo</option>
+        <option *ngFor="let dispositivo of dispositivos" [value]="dispositivo.id">
+          {{ dispositivo.nombre }}
+        </option>
+      </select>
+    </label>
+
+    <!-- Botones -->
+    <div class="modal-buttons">
+      <button class="guardar-btn" (click)="guardarPunto()">Guardar</button>
+      <button class="cancelar-btn" (click)="cerrarModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de alerta reutilizable -->
+<div class="modal" *ngIf="modalAlertaActivo">
+  <div class="modal-content">
+    <p>{{ mensajeAlerta }}</p>
+    <div class="modal-buttons">
+      <button class="guardar-btn" (click)="cerrarModalAlerta()">Aceptar</button>
+    </div>
+  </div>
+</div>

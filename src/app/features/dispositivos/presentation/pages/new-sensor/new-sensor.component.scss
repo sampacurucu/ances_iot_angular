@@ -1,0 +1,104 @@
+.container {
+    padding: 20px;
+  
+    h2 {
+      margin-bottom: 20px;
+    }
+  
+    .sensor-form {
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+  
+      .form-group {
+        display: flex;
+        flex-direction: column;
+  
+        label {
+          font-weight: bold;
+          margin-bottom: 4px;
+        }
+  
+        input,
+        select {
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+  
+        .unit {
+          font-size: 12px;
+          margin-top: 4px;
+          color: #666;
+        }
+      }
+  
+      .description-group {
+        grid-column: span 3;
+      }
+  
+      .battery-section {
+        grid-template-columns: repeat(3, 1fr);
+      }
+  
+      .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 150px;
+  
+        .btn {
+          padding: 10px 20px;
+          font-weight: bold;
+          border-radius: 20px;
+          border: none;
+          cursor: pointer;
+          color: white;
+        }
+  
+        .add {
+          background-color: #1d8c37;
+        }
+  
+        .cancel {
+          background-color: #b72d1d;
+        }
+      }
+    }
+  }
+
+  
+.modal-error {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #333;
+  text-align: center;
+}
+
+.modal-content button {
+  margin-top: 10px;
+  padding: 6px 14px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+  

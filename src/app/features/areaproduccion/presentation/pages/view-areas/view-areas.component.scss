@@ -1,0 +1,132 @@
+app-header {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.espacio-header {
+  height: 20px;
+}
+
+h2 {
+  margin-bottom: 50px;
+}
+
+.areas-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+
+  table {
+    border-collapse: collapse;
+    width: 70%;
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: black;
+      color: white;
+    }
+
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: 20%;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 15%;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+      width: 15%;
+    }
+
+    th:nth-child(4),
+    td:nth-child(4) {
+      width: 20%;
+    }
+
+    th:nth-child(5),
+    td:nth-child(5) {
+      width: 15%;
+    }
+
+    th:nth-child(6),
+    td:nth-child(6) {
+      width: 15%;
+    }
+  }
+
+  .imagen-preview {
+    width: 30%;
+    text-align: center;
+
+    .preview-box {
+      width: 450px;
+      height: 300px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        image-rendering: auto;
+      }
+    }
+
+    p {
+      margin-top: 10px;
+    }
+  }
+}
+
+.botones-acciones {
+  width: 100%;
+  margin-top: 5px;
+  margin-left: 50px;
+  display: flex;
+  justify-content: left;
+  gap: 150px;
+
+  button {
+    padding: 10px 20px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .btn-green {
+    background-color: green;
+
+    &:hover {
+      background-color: darkgreen;
+    }
+  }
+
+  .btn-blue {
+    background-color: blue;
+
+    &:hover {
+      background-color: darkblue;
+    }
+  }
+
+  .btn-red {
+    background-color: red;
+
+    &:hover {
+      background-color: darkred;
+    }
+  }
+}

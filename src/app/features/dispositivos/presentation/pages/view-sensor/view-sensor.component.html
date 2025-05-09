@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+
+<div class="container">
+    <h2>Dispositivos Registrados</h2>
+  
+    <table class="sensor-table">
+      <thead>
+        <tr>
+          <th>Tipo Dispositivo</th>
+          <th>Nombre</th>
+          <th>Propiedad</th>
+          <th>Equipo</th>
+          <th>¿Dirección Dispositivo ?</th>
+          <th>IP Gateway</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sensor of sensores">
+          <td>{{ sensor.tipo }}</td>
+          <td>{{ sensor.nombre }}</td>
+          <td>{{ sensor.propiedad }}</td>
+          <td>{{ sensor.nombreEquipo }}</td>
+          <td>{{ sensor.direccionDispositivo }}</td>
+          <td>{{ sensor.ipGateway }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="button-group">
+      <!-- <button class="btn add">Agregar Dispositivo</button> -->
+      <button class="btn add" (click)="mostrarModal = true">Agregar Dispositivo</button>
+
+      <button class="btn edit">Editar Dispositivo</button>
+      <button class="btn delete">Eliminar Dispositivo</button>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+<div class="modal-overlay" *ngIf="mostrarModal">
+  <div class="modal-box">
+    <h3>Seleccione el dispositivo a agregar</h3>
+    <div class="modal-buttons">
+      <button class="btn add" [routerLink]="['/dispositivos/newsensor']">Agregar Sensor</button>
+      <button class="btn edit" [routerLink]="['/nuevo-actuador']">Agregar Actuador</button>
+    </div>
+    <button class="btn gray" (click)="mostrarModal = false">Cancelar</button>
+  </div>
+</div>

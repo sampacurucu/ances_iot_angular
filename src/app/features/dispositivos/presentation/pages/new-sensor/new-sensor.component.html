@@ -1,0 +1,105 @@
+<app-header></app-header>
+
+<div class="container">
+  <h2>Agregar Dispositivo IoT – Sensor</h2>
+
+  <form class="sensor-form" #sensorForm="ngForm">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="nombre">NOMBRE:</label>
+        <input id="nombre" type="text" [(ngModel)]="nombre" name="nombre" required />
+      </div>
+      <div class="form-group">
+        <label for="marca">MARCA:</label>
+        <input id="marca" type="text" [(ngModel)]="marca" name="marca" />
+      </div>
+      <div class="form-group">
+        <label for="referencia">REFERENCIA:</label>
+        <input id="referencia" type="text" [(ngModel)]="referencia" name="referencia" />
+      </div>
+      <div class="form-group">
+        <label for="modelo">MODELO:</label>
+        <input id="modelo" type="text" [(ngModel)]="modelo" name="modelo" />
+      </div>
+      <div class="form-group">
+        <label for="propiedad">PROPIEDAD MEDIDA:</label>
+        <select id="propiedad" [(ngModel)]="propiedad" name="propiedad">
+          <option  value="" disabled selected>Seleccione propiedad</option>
+          <option value="Temperatura">Temperatura</option>
+          <option value="Humedad">Humedad</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="fechaMantenimiento">FECHA MANTENIMIENTO:</label>
+        <input id="fechaMantenimiento" type="date" [(ngModel)]="fechaMantenimiento" name="fechaMantenimiento" />
+      </div>
+      <div class="form-group">
+        <label for="precision">PRECISIÓN:</label>
+        <input id="precision" type="number" [(ngModel)]="precision" name="precision" />
+        <span class="unit">%</span>
+      </div>
+      <div class="form-group">
+        <label for="frecuencia">FRECUENCIA:</label>
+        <input id="frecuencia" type="number" [(ngModel)]="frecuencia" name="frecuencia" />
+        <span class="unit">MINUTOS</span>
+      </div>
+      <div class="form-group">
+        <label for="equipo">EQUIPO:</label>
+        <select id="equipo" name="equipo" [(ngModel)]="equipoId">
+          <!-- <option [ngValue]="null" disabled>Seleccione equipo</option> -->
+          <option value="" disabled >Seleccione equipo</option>
+          <option *ngFor="let eq of equipos" [value]="eq.id">{{ eq.name }}</option>
+        </select>
+      </div>
+      <div class="form-group description-group">
+        <label for="descripcion">DESCRIPCIÓN:</label>
+        <input id="descripcion" type="text" [(ngModel)]="descripcion" name="descripcion" />
+      </div>
+    </div>
+
+    <h3>Datos Comunicación:</h3>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="direccion">DIRECCIÓN DEL DISPOSITIVO:</label>
+        <input id="direccion" type="text" [(ngModel)]="direccionDispositivo" name="direccionDispositivo" />
+      </div>
+      <div class="form-group">
+        <label for="ip">IP GATEWAY</label>
+        <input id="ip" type="text" [(ngModel)]="ipGateway" name="ipGateway" />
+      </div>
+      <div class="form-group">
+        <label for="protocolo">PROTOCOLO COMUNICACIÓN:</label>
+        <input id="protocolo" type="text" [(ngModel)]="protocolo" name="protocolo" />
+      </div>
+    </div>
+
+    <h3>Datos Energéticos:</h3>
+    <div class="form-grid battery-section">
+      <div class="form-group">
+        <label for="disponeBateria">DISPONE BATERIA:</label>
+        <input id="disponeBateria" type="checkbox" [(ngModel)]="disponeBateria" name="disponeBateria" />
+      </div>
+      <div class="form-group">
+        <label for="nombreBateria">NOMBRE BATERIA:</label>
+        <input id="nombreBateria" type="text" [(ngModel)]="nombreBateria" name="nombreBateria" />
+      </div>
+      <div class="form-group">
+        <label for="capacidad">CAPACIDAD BATERIA:</label>
+        <input id="capacidad" type="number" [(ngModel)]="capacidadBateria" name="capacidadBateria" />
+        <span class="unit">mAh</span>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" class="btn add" (click)="guardarSensor()">Agregar Dispositivo IoT</button>
+      <button type="button" class="btn cancel" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>
+
+<div class="modal-error" *ngIf="mensajeError">
+    <div class="modal-content">
+      <p>{{ mensajeError }}</p>
+      <button (click)="mensajeError = ''">Cerrar</button>
+    </div>
+  </div>

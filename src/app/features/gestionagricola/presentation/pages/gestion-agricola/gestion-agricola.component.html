@@ -1,0 +1,23 @@
+<app-header></app-header>
+
+<div class="container">
+  <h2>Gestión Agrícola</h2>
+
+  <div class="card-grid">
+    <div class="card" [routerLink]="['/productores']">
+      <img src="assets/productor.png" alt="Productores" />
+      <p>Productores</p>
+    </div>
+
+    <div class="card" [routerLink]="['/fincas']">
+      <img src="assets/fincas.png" alt="Fincas y cultivos" />
+      <p>Fincas y cultivos</p>
+    </div>
+
+    <div class="card" [routerLink]="['/view/process']">
+      <img src="assets/procesos.png" alt="Procesos y actividades" />
+      <p>Procesos y actividades</p>
+    </div>
+  </div>
+</div>
+
