@@ -78,3 +78,10 @@
     </div>
   </div>
 </div>
+
+<div class="modal-error" *ngIf="mensajeError">
+  <div class="modal-content">
+    <p>{{ mensajeError }}</p>
+    <button (click)="mensajeError = ''">Cerrar</button>
+  </div>
+</div>

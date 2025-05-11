@@ -4,6 +4,8 @@ import { CropSummaryModel } from "../models/crop.summary.model";
 import { ProcessModel } from "../../procesos/models/process.model";
 import { FarmerModel } from "../models/farmer.model";
 import { SmartPointSimpleModel } from "../models/smart.point.simple.model";
+import { ProcesoIniciadoModel } from "../models/proceso.iniciado.model";
+import { ProcesoIniSummaryModel } from "../models/proceso.ini.summary.model";
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +34,15 @@ export class ProcesoIniciadoService {
     obtenerPuntosByArea(idArea: string) {
       return this.http.get<SmartPointSimpleModel[]>(`${this.baseUrl}/points/byArea/${idArea}`);
     }
+    //metodo para guardar el proceso iniciado
+    iniciarProceso(payload: ProcesoIniciadoModel) {
+      return this.http.post(`${this.baseUrl}/new/process/started`, payload);
+    }
+
+    // Método para obtener todos los procesos iniciados
+    getProcesosIniciados() {
+      return this.http.get<ProcesoIniSummaryModel[]>(`${this.baseUrl}/all/process/started`);
+    }
+
 
 }

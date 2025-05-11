@@ -7,6 +7,7 @@ import { CropSummaryModel } from '../../../models/crop.summary.model';
 import { ProcesoIniciadoService } from '../../../services/procesos.iniciados.service';
 import { ProcessModel } from 'src/app/features/procesos/models/process.model';
 import { SmartPointSimpleModel } from '../../../models/smart.point.simple.model';
+import { ProcesoIniciadoModel } from '../../../models/proceso.iniciado.model';
 
 @Component({
   selector: 'app-start-proceso',
@@ -58,11 +59,18 @@ export class StartProcesoComponent implements OnInit {
     puntos: SmartPointSimpleModel[] = [];
     selectedFechaInicio: string = '';
 
+    //varible para el estado del proceso
+    estadoProceso: boolean = true;
+    mensajeError: string = '';
+
+
 
     onFincaChange(event: any): void {
     const id = event.target.value;
-    this.areaSeleccionadaId = '';
-    this.imagenAreaSeleccionada = null;
+    // this.areaSeleccionadaId = '';
+    // this.imagenAreaSeleccionada = null;
+
+    this.resetFormularioAlCambiarFinca();
 
     this.areaService.obtenerAreasByFarm(id).subscribe({
       next: (data) => this.areas = data,
@@ -107,17 +115,81 @@ export class StartProcesoComponent implements OnInit {
   }
 
   iniciarProceso(): void {
-  console.log('Iniciar proceso con:');
-  console.log('Finca:', this.selectedFincaId);
-  console.log('Cultivo:', this.selectedCropId);
-  console.log('Proceso:', this.selectedProcesoId);
-  console.log('Agricultor:', this.selectedAgricultorId);
-  console.log('Área:', this.areaSeleccionadaId);
-  console.log('Fecha:', this.selectedFechaInicio);
+    if (!this.validarFormulario()) {
+    return;
+    }
+    console.log('Iniciar proceso con:');
+    console.log('Finca:', this.selectedFincaId);
+    console.log('Cultivo:', this.selectedCropId);
+    console.log('Proceso:', this.selectedProcesoId);
+    console.log('Agricultor:', this.selectedAgricultorId);
+    console.log('Área:', this.areaSeleccionadaId);
+    console.log('Fecha:', this.selectedFechaInicio);
+
+     const procesoI: ProcesoIniciadoModel = {
+    fincaId: this.selectedFincaId,
+    cultivoId: this.selectedCropId,
+    procesoId: this.selectedProcesoId,
+    agricultorId: this.selectedAgricultorId,
+    areaId: this.areaSeleccionadaId,
+    fechaInicio: this.selectedFechaInicio,
+    estado: this.estadoProceso // puedes poner true o false según lógica
+  };
+
+  this.procesoService.iniciarProceso(procesoI).subscribe({
+    next: () => {
+      console.log('Proceso iniciado correctamente');
+      this.router.navigate(['/view/procesos/iniciados']);
+    },
+    error: (err) => {
+      console.error('Error al iniciar proceso:', err);
+      this.mensajeError = 'Hubo un error al iniciar el proceso. Intente de nuevo.';
+    }
+  });
+
+
+
 }
 
 cancelar(): void {
   this.router.navigate(['/view/procesos/iniciados']);
 }
+
+validarFormulario(): boolean {
+  if (
+    !this.selectedFincaId ||
+    !this.selectedCropId ||
+    !this.selectedProcesoId ||
+    !this.selectedAgricultorId ||
+    !this.areaSeleccionadaId ||
+    !this.selectedFechaInicio
+  ) {
+    this.mensajeError = 'Por favor, llene todos los campos antes de iniciar el proceso.';
+    return false;
+  }
+
+  if (this.puntos.length === 0) {
+    this.mensajeError = 'El área seleccionada no tiene puntos inteligentes asignados.';
+    return false;
+  }
+
+  return true;
+}
+
+resetFormularioAlCambiarFinca(): void {
+  this.selectedCropId = '';
+  // this.selectedProcesoId = '';
+  // this.selectedAgricultorId = '';
+  // this.selectedFechaInicio = '';
+  this.areaSeleccionadaId = '';
+  this.imagenAreaSeleccionada = null;
+
+  this.areas = [];
+  this.crops = [];
+  // this.procesos = [];
+  this.puntos = [];
+}
+
+
 
 }
