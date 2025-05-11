@@ -9,6 +9,8 @@ import { NewSensorComponent } from './features/dispositivos/presentation/pages/n
 import { ViewSensorComponent } from './features/dispositivos/presentation/pages/view-sensor/view-sensor.component';
 import { AreasPuntosComponent } from './features/areaproduccion/presentation/pages/areas-puntos/areas-puntos.component';
 import { GestionAgricolaComponent } from './features/gestionagricola/presentation/pages/gestion-agricola/gestion-agricola.component';
+import { ViewProcesosIniciadosComponent } from './features/procesos_iniciados/presentation/pages/view-procesos-iniciados/view-procesos-iniciados.component';
+import { StartProcesoComponent } from './features/procesos_iniciados/presentation/pages/start-proceso/start-proceso.component';
 const routes: Routes = [{ path: '', component: HomeComponent },
   { path: 'gestion/agricola', component: GestionAgricolaComponent },
   { path: 'areaproduccion/newarea', component: NewAreaComponent },
@@ -18,8 +20,10 @@ const routes: Routes = [{ path: '', component: HomeComponent },
   { path: 'dispositivos/newsensor', component: NewSensorComponent },
   { path: 'view/sensors', component: ViewSensorComponent },
   { path: 'view/area/puntos', component: AreasPuntosComponent },
+  { path: 'view/procesos/iniciados', component: ViewProcesosIniciadosComponent },
+  { path: 'start/proceso', component: StartProcesoComponent },
   
- ];
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -66,8 +66,8 @@ constructor(private areaService: AreaService, private router: Router) {}
 
 
   marcadorActivo: boolean = false;
-marcadorX: number = 0;
-marcadorY: number = 0;
+  marcadorX: number = 0;
+  marcadorY: number = 0;
 
 colocarMarcador(event: MouseEvent) {
   const imageBox = (event.currentTarget as HTMLElement).getBoundingClientRect();

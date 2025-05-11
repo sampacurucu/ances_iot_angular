@@ -17,6 +17,8 @@ import { ViewProcessComponent } from './features/procesos/presentation/pages/vie
 import { NewSensorComponent } from './features/dispositivos/presentation/pages/new-sensor/new-sensor.component';
 import { ViewSensorComponent } from './features/dispositivos/presentation/pages/view-sensor/view-sensor.component';
 import { GestionAgricolaComponent } from './features/gestionagricola/presentation/pages/gestion-agricola/gestion-agricola.component';
+import { ViewProcesosIniciadosComponent } from './features/procesos_iniciados/presentation/pages/view-procesos-iniciados/view-procesos-iniciados.component';
+import { StartProcesoComponent } from './features/procesos_iniciados/presentation/pages/start-proceso/start-proceso.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { GestionAgricolaComponent } from './features/gestionagricola/presentatio
     NewSensorComponent,
     ViewSensorComponent,
     GestionAgricolaComponent,
+    ViewProcesosIniciadosComponent,
+    StartProcesoComponent,
     // HomeComponent,
     // HeaderComponent,
     // NewAreaComponent

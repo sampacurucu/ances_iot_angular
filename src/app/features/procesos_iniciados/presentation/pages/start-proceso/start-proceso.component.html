@@ -1,0 +1,80 @@
+<app-header></app-header>
+
+<h2>Iniciar Proceso</h2>
+
+<div class="container">
+  <div class="main-section">
+    <div class="formulario">
+      <label>FINCA</label>
+      <select id="finca" [(ngModel)]="selectedFincaId"  (change)="onFincaChange($event)">
+        <option disabled selected value="">Seleccione finca a la que pertenece</option>
+        <option *ngFor="let finca of fincas" [value]="finca.id">
+          {{ finca.nombre }}
+        </option>
+      </select>
+      
+      <label>CULTIVO</label>
+        <select [(ngModel)]="selectedCropId">
+            <option disabled selected value="">Seleccione cultivo</option>
+            <option *ngFor="let crop of crops" [value]="crop.id">
+                {{ crop.nombre }}
+            </option>
+        </select>
+
+      <label>PROCESO</label>
+      <select id="proceso" class="dropdown" [(ngModel)]="selectedProcesoId">
+        <option disabled value="">Seleccione un proceso</option>
+        <option *ngFor="let proceso of procesos" [value]="proceso.id">
+          {{ proceso.name }}
+        </option>
+      </select>
+
+      <label>ÁREA DE PRODUCCIÓN</label>
+      <select [(ngModel)]="areaSeleccionadaId" (change)="onAreaChange($event)">
+        <option disabled value="">Seleccione área</option>
+        <option *ngFor="let area of areas" [value]="area.id">
+          {{ area.name }}
+        </option>
+      </select>
+
+      <label>AGRICULTOR</label>
+      <select id="agricultor" class="dropdown" [(ngModel)]="selectedAgricultorId">
+        <option disabled value="">Seleccione un agricultor</option>
+        <option *ngFor="let agricultor of farmers" [value]="agricultor.id">
+          {{ agricultor.nombre }}
+        </option>
+      </select>
+
+      <label>FECHA DE INICIO PROCESO</label>
+      <input type="date"  [(ngModel)]="selectedFechaInicio"  />
+
+      <div class="botones-formulario">
+        <button class="btn-iniciar" (click)="iniciarProceso()">Iniciar</button>
+        <button class="btn-cancelar" (click)="cancelar()">Cancelar</button>
+      </div>
+
+    </div>
+
+    <div class="image-box-container">
+      <div class="box-contenido">
+        <div class="image-box">
+            <img *ngIf="imagenAreaSeleccionada" [src]="'data:image/png;base64,' + imagenAreaSeleccionada" alt="Vista previa" />
+          <!-- Imagen o marcador aquí -->
+           <div
+                *ngFor="let punto of puntos"
+                class="marcador-con-nombre"
+                [ngStyle]="{
+                    left: punto.x + '%',
+                    top: punto.y + '%'
+                }"
+                >
+                <span class="nombre-punto">{{ punto.nombre }}</span>
+                <img src="assets/location.svg" class="marcador-icono" />
+            </div>
+        </div>
+      </div>
+
+   
+    </div>
+  </div>
+</div>

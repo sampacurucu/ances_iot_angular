@@ -1,0 +1,47 @@
+h2 {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+
+  th {
+    background-color: #111;
+    color: white;
+    padding: 12px;
+  }
+
+  td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+  }
+}
+
+.botones {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-evenly;
+
+  .btn {
+    padding: 12px 24px;
+    font-weight: bold;
+    border-radius: 999px;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    &.iniciar {
+      background-color: #0a7d27;
+    }
+
+    &.finalizar {
+      background-color: #0059a9;
+    }
+
+    &.eliminar {
+      background-color: #a81800;
+    }
+  }
+}
