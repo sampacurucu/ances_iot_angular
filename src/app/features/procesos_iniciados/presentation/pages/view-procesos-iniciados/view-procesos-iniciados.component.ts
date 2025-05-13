@@ -19,8 +19,12 @@ export class ViewProcesosIniciadosComponent implements OnInit {
   procesosIniciados: ProcesoIniSummaryModel[] = [];
 
 
-   iniciarProceso(): void {
+  iniciarProceso(): void {
     this.router.navigate(['/start/proceso']); // esto redirige
+  }
+
+  finalizarProceso(): void {
+    this.router.navigate(['/end/proceso']);
   }
 
   loadProcesosIniciados(): void {

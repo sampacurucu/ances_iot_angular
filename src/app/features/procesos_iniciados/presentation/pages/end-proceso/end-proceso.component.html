@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<h2>Finalizar Proceso</h2>
+
+<div class="container">
+  <div class="main-section">
+    <div class="formulario">
+      <label for="proceso">PROCESOS INICIADOS</label>
+      <select id="proceso" [(ngModel)]="procesoSeleccionadoId">
+        <option disabled selected value="">Seleccione proceso a finalizar</option>
+        <option *ngFor="let process of procesosIniciados" [value]="process.id">
+          {{ process.nombreFinca }} - {{ process.nombreProceso  }} - {{ process.nombreCultivo }} - {{ process.nombreArea }} - {{ process.fechaInicio }}
+        </option>
+      </select>
+
+      <label for="fechaFin">FECHA FIN DEL PROCESO</label>
+      <input id="fechaFin" type="date" [(ngModel)]="fechaFin" />
+    </div>
+
+    <div class="formulario">
+      <h3>Resultado de calidad</h3>
+
+      <label for="estado">ESTADO</label>
+      <select id="estado" [(ngModel)]="estado">
+        <option disabled selected value="">Seleccione estado del cultivo</option>
+        <option value="Exitoso">Exitoso</option>
+        <option value="Parcialmente exitoso">Parcialmente exitoso</option>
+        <option value="Perdido">Perdido</option>
+        <option value="Afectado por plaga">Afectado por plaga</option>
+        <option value="Afectado por clima">Afectado por clima</option>
+        <option value="Proceso interrumpido">Proceso interrumpido</option>
+      </select>
+
+      <label for="cantidad">CANTIDAD PRODUCIDA (kg)</label>
+      <input id="cantidad" type="number" placeholder="Ingrese cantidad producida" [(ngModel)]="cantidadProducida" />
+
+      <label for="observaciones">DESCRIPCIÓN OBSERVACIONES GENERALES:</label>
+      <textarea id="observaciones" placeholder="Ingrese una breve descripción" [(ngModel)]="observaciones" ></textarea>
+
+      <label for="recomendaciones">RECOMENDACIONES</label>
+      <textarea id="recomendaciones" placeholder="Ingrese una pequeña recomendación" [(ngModel)]="recomendaciones"></textarea>
+    </div>
+  </div>
+
+  <div class="botones">
+    <button class="btn finalizar" (click)="finalizarProceso()">Finalizar</button>
+    <button class="btn cancelar" (click)="cancelar()">Cancelar</button>
+  </div>
+</div>
+
+
+<div class="modal-error" *ngIf="mensajeError">
+  <div class="modal-content">
+    <p>{{ mensajeError }}</p>
+    <button (click)="mensajeError = ''">Cerrar</button>
+  </div>
+</div>

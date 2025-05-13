@@ -6,6 +6,7 @@ import { FarmerModel } from "../models/farmer.model";
 import { SmartPointSimpleModel } from "../models/smart.point.simple.model";
 import { ProcesoIniciadoModel } from "../models/proceso.iniciado.model";
 import { ProcesoIniSummaryModel } from "../models/proceso.ini.summary.model";
+import { ResultadoCalidadModel } from "../models/resultado.calidad.model";
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,16 @@ export class ProcesoIniciadoService {
     // Método para obtener todos los procesos iniciados
     getProcesosIniciados() {
       return this.http.get<ProcesoIniSummaryModel[]>(`${this.baseUrl}/all/process/started`);
+    }
+
+    // Método para acutalizar el proceso iniciado fecha fin
+    actualizarFechaFin(id: string, fechaFin: string){
+      return this.http.patch(`${this.baseUrl}/update/process/started/${id}`, { fechaFin });
+    }
+
+    // Método para guardar el resultado de calidad
+    guardarResultadoCalidad(data: ResultadoCalidadModel){
+      return this.http.post(`${this.baseUrl}/new/result/quality`, data);
     }
 
 
