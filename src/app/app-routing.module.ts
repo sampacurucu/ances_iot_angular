@@ -12,6 +12,8 @@ import { GestionAgricolaComponent } from './features/gestionagricola/presentatio
 import { ViewProcesosIniciadosComponent } from './features/procesos_iniciados/presentation/pages/view-procesos-iniciados/view-procesos-iniciados.component';
 import { StartProcesoComponent } from './features/procesos_iniciados/presentation/pages/start-proceso/start-proceso.component';
 import { EndProcesoComponent } from './features/procesos_iniciados/presentation/pages/end-proceso/end-proceso.component';
+import { ViewReglasComponent } from './features/reglas/presentation/pages/view-reglas/view-reglas.component';
+import { NewReglaComponent } from './features/reglas/presentation/pages/new-regla/new-regla.component';
 const routes: Routes = [{ path: '', component: HomeComponent },
   { path: 'gestion/agricola', component: GestionAgricolaComponent },
   { path: 'areaproduccion/newarea', component: NewAreaComponent },
@@ -24,6 +26,8 @@ const routes: Routes = [{ path: '', component: HomeComponent },
   { path: 'view/procesos/iniciados', component: ViewProcesosIniciadosComponent },
   { path: 'start/proceso', component: StartProcesoComponent },
   { path: 'end/proceso', component: EndProcesoComponent },
+  { path: 'view/reglas', component: ViewReglasComponent },
+  { path: 'new/regla', component: NewReglaComponent },
   
 ];
 

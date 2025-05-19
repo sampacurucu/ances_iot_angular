@@ -37,7 +37,7 @@ export class AreaService {
 
 //obten dispositivos
   obtenerDispositivos() {
-    return this.http.get<DispositivoResumenModel[]>(`${this.baseUrl}/dispositivos/sensors/resumen`);
+    return this.http.get<DispositivoResumenModel[]>(`${this.baseUrl}/dispositivos/resumen`);
   }
 //guardar los puntos inteligentes
   guardarPuntos(puntos: PuntoModel[]) {

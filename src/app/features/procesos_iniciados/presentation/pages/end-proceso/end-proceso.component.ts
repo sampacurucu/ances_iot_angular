@@ -32,7 +32,7 @@ export class EndProcesoComponent implements OnInit {
   mensajeError: string = '';
 
 
-    loadProcesosIniciados(): void {
+  loadProcesosIniciados(): void {
     this.procesoService.getProcesosIniciados().subscribe({
       next: (data) => this.procesosIniciados = data,
       error: (err) => console.error('Error al cargar procesos iniciados:', err)

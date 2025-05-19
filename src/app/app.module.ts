@@ -20,6 +20,8 @@ import { GestionAgricolaComponent } from './features/gestionagricola/presentatio
 import { ViewProcesosIniciadosComponent } from './features/procesos_iniciados/presentation/pages/view-procesos-iniciados/view-procesos-iniciados.component';
 import { StartProcesoComponent } from './features/procesos_iniciados/presentation/pages/start-proceso/start-proceso.component';
 import { EndProcesoComponent } from './features/procesos_iniciados/presentation/pages/end-proceso/end-proceso.component';
+import { ViewReglasComponent } from './features/reglas/presentation/pages/view-reglas/view-reglas.component';
+import { NewReglaComponent } from './features/reglas/presentation/pages/new-regla/new-regla.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { EndProcesoComponent } from './features/procesos_iniciados/presentation/
     ViewProcesosIniciadosComponent,
     StartProcesoComponent,
     EndProcesoComponent,
+    ViewReglasComponent,
+    NewReglaComponent,
     // HomeComponent,
     // HeaderComponent,
     // NewAreaComponent

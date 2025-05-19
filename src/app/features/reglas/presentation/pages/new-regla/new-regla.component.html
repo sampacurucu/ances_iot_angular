@@ -1,0 +1,169 @@
+<app-header></app-header>
+
+<h2>Agregar Regla Detección Actividades</h2>
+
+<div class="main-layout">
+  <!-- FORMULARIO -->
+  <div class="form-grid">
+    <div class="form-group">
+      <label>PROCESO INICIADO</label>
+      <!-- <select id="proceso" [(ngModel)]="procesoSeleccionadoId"> -->
+      <select id="proceso" [(ngModel)]="procesoSeleccionadoId" (change)="onProcesoChange()">
+        <option disabled selected value="">Seleccione proceso a finalizar</option>
+        <option *ngFor="let process of procesosIniciados" [value]="process.id">
+          {{ process.nombreFinca }} - {{ process.nombreProceso  }} - {{ process.nombreCultivo }} - {{ process.nombreArea }} - {{ process.fechaInicio }}
+        </option>
+      </select>
+
+    </div>
+
+    <div class="form-group">
+      <label>TIPO DE REGLA</label>
+      <input type="text" [value]="'Deteccion de actividad'" readonly [(ngModel)]="tipo">
+    </div>
+
+    <!-- <div class="form-group">
+      <label>NOMBRE:</label>
+      <input type="text" placeholder="Ingrese un nombre" [(ngModel)]="nombre">
+    </div> -->
+
+    <div class="form-group">
+      <label>ACTIVIDAD A DETECTAR</label>
+      <select [(ngModel)]="actividadSeleccionadaId"  (change)="resetCamposRegla()">
+        <option disabled selected value="">Seleccione actividad</option>
+        <option *ngFor="let actividad of activities" [value]="actividad.id">
+          {{ actividad.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>NOMBRE:</label>
+      <input type="text" placeholder="Ingrese un nombre" [(ngModel)]="nombre">
+    </div>
+
+    <div class="form-group full">
+      <label>OPERADOR ENTRE CONDICIONES</label>
+      <select [(ngModel)]="operadorSeleccionado">
+        <option disabled selected value="">Seleccione operador</option>
+        <option *ngFor="let op of operadores" [value]="op">{{ op }}</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group half">
+        <label>SELECCIONE DISPOSITIVO</label>
+        <select [(ngModel)]="selectedDispositivo" (ngModelChange)="onDispositivoChange($event)">
+          <!-- <option disabled value="">Seleccione un dispositivo</option> -->
+          <option [ngValue]="null" disabled>Seleccione un dispositivo</option>
+        <option *ngFor="let dispositivo of dispositivos" [ngValue]="dispositivo">
+          {{ dispositivo.nombre }}
+        </option>
+        </select>
+      </div>
+
+      <div class="form-group half">
+        <div class="form-group">
+          <label>PROPIEDAD MEDIDA</label>
+          <input type="text" [value]="propiedadDispositivo" readonly>
+        </div>
+        <div class="action-buttons">
+          <!-- <button class="add">Agregar condición</button> -->
+          <button class="add" (click)="abrirModal()">Agregar condición</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group full">
+      <label>DESCRIPCIÓN</label>
+      <textarea placeholder="Ingrese una breve descripcion" [(ngModel)]="descripcion" ></textarea>
+    </div>
+
+    <div class="action-buttons">
+      <button class="add" (click)="guardarTodasLasReglas()">Agregar</button>
+      <button class="cancel" (click)="cancelar()">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- TABLA -->
+  <div class="side-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre Regla</th>
+          <th>Actividad a Detectar</th>
+          <th>Dispositivo</th>
+          <th>Propiedad</th>
+          <th>Operador</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fila of condicionesTabla">
+          <td>{{ fila.nombreRegla }}</td>
+          <td>{{ fila.actividad }}</td>
+          <td>{{ fila.dispositivo }}</td>
+          <td>{{ fila.propiedad }}</td>
+          <td>{{ fila.operador }}</td>
+          <td>{{ fila.valor }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- MODAL Agregar Condición -->
+<div *ngIf="mostrarModal" class="modal-backdrop" (click)="cerrarModal()"></div>
+<div *ngIf="mostrarModal" class="modal">
+  <h2>Agregar Condición</h2>
+
+  <div class="form-row">
+    <div class="form-group half">
+      <label>NOMBRE</label>
+      <input type="text" [(ngModel)]="condicionNombre" placeholder="Ingrese un nombre">
+    </div>
+
+    <div class="form-group half">
+      <label>OPERADOR DE CONDICIÓN</label>
+      <select [(ngModel)]="condicionOperador">
+        <option disabled selected value="">Seleccione operador</option>
+        <option *ngFor="let op of operadores2" [value]="op">{{ op }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group half">
+      <label>PROPIEDAD - CONDICIÓN</label>
+      <input type="text" [(ngModel)]="propiedadDispositivo" readonly>
+      <!-- [value]="propiedadDispositivo" -->
+    </div>
+
+    <div class="form-group half">
+      <label>VALOR ESPERADO</label>
+      <!-- <input type="text" [(ngModel)]="condicionValor" placeholder="Ingrese el valor esperado"> -->
+      <input id="precision" type="number" [(ngModel)]="condicionValor" name="precision" placeholder="Ingrese el valor esperado" />
+    </div>
+  </div>
+
+  <div class="form-group full">
+    <label>DESCRIPCIÓN</label>
+    <textarea [(ngModel)]="condicionDescripcion" placeholder="Ingrese una breve descripcion"></textarea>
+  </div>
+
+  <div class="action-buttons">
+    <button class="add" (click)="guardarCondicion()">Agregar</button>
+    <button class="cancel" (click)="cerrarModal()">Cancelar</button>
+  </div>
+</div>
+
+<!-- Modal de alerta reutilizable -->
+<div class="alert-modal" *ngIf="modalAlertaActivo">
+  <div class="modal-content">
+    <p>{{ mensajeAlerta }}</p>
+    <div class="modal-buttons">
+      <button class="cancelar-btn" (click)="cerrarModalAlerta()">Aceptar</button>
+    </div>
+  </div>
+</div>

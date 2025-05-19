@@ -1,0 +1,70 @@
+h2 {
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  .filter {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      letter-spacing: 1px;
+    }
+
+    select {
+      padding: 8px;
+      border-radius: 4px;
+    }
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+
+  th {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    text-align: left;
+  }
+
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-around;
+
+  button {
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+
+    &.add {
+      background-color: green;
+    }
+
+    &.edit {
+      background-color: #114d8e;
+    }
+
+    &.delete {
+      background-color: #c62828;
+    }
+  }
+}
