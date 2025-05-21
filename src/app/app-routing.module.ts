@@ -14,6 +14,7 @@ import { StartProcesoComponent } from './features/procesos_iniciados/presentatio
 import { EndProcesoComponent } from './features/procesos_iniciados/presentation/pages/end-proceso/end-proceso.component';
 import { ViewReglasComponent } from './features/reglas/presentation/pages/view-reglas/view-reglas.component';
 import { NewReglaComponent } from './features/reglas/presentation/pages/new-regla/new-regla.component';
+import { NewReglaEnergyComponent } from './features/reglas/presentation/pages/new-regla-energy/new-regla-energy.component';
 const routes: Routes = [{ path: '', component: HomeComponent },
   { path: 'gestion/agricola', component: GestionAgricolaComponent },
   { path: 'areaproduccion/newarea', component: NewAreaComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [{ path: '', component: HomeComponent },
   { path: 'end/proceso', component: EndProcesoComponent },
   { path: 'view/reglas', component: ViewReglasComponent },
   { path: 'new/regla', component: NewReglaComponent },
+  { path: 'new/regla/energy', component: NewReglaEnergyComponent },
   
 ];
 

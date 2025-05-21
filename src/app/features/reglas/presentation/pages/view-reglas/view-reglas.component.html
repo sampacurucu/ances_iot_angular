@@ -5,49 +5,80 @@
 <div class="filters">
   <div class="filter">
     <label>PROCESOS INICIADOS</label>
-    <select>
-      <option selected disabled>Seleccione proceso</option>
+    <select id="proceso" [(ngModel)]="procesoSeleccionadoId" (change)="onProcesoSeleccionado()">
+    <!-- <select id="proceso" [(ngModel)]="procesoSeleccionadoId"> -->
+        <option disabled selected value="">Seleccione proceso a finalizar</option>
+        <option *ngFor="let process of procesosIniciados" [value]="process.id">
+          {{ process.nombreFinca }} - {{ process.nombreProceso  }} - {{ process.nombreCultivo }} - {{ process.nombreArea }} - {{ process.fechaInicio }}
+        </option>
     </select>
+    <!-- <select>
+      <option selected disabled>Seleccione proceso</option>
+    </select> -->
   </div>
 
-  <div class="filter">
+  <!-- <div class="filter">
     <label>TIPO DE REGLA</label>
     <select>
       <option selected disabled>Seleccione tipo de regla</option>
     </select>
-  </div>
+  </div> -->
 </div>
 
 <table>
   <thead>
     <tr>
-      <th>Regla</th>
-      <th>Dispositivos asociados</th>
-      <th>Parametro</th>
-      <th>Condiciones</th>
-      <th>Acción</th>
+      <th>Tipo</th>
+      <th>Nombre</th>
+      <th>Actividad</th>
+      <th>Dispositivo</th>
+      <th>Propiedad</th>
+      <th>Condicion</th>
     </tr>
   </thead>
   <tbody>
+    <tr *ngFor="let regla of reglasPlanas">
+      <td>{{ regla.tipo }}</td>
+      <td>{{ regla.nombreRegla }}</td>
+      <td>{{ regla.actividad }}</td>
+      <td>{{ regla.nombreDispositivo }}</td>
+      <td>{{ regla.propiedad }}</td>
+      <td>{{ regla.operadorYValor }}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+<div style="margin: 60px 0;"></div>
+
+<table>
+  <thead>
     <tr>
-      <td>Regla 1 detección riego</td>
-      <td>Sensor 1, sensor 2, ....</td>
-      <td>Humedad</td>
-      <td>x &gt; 30, x &lt; 40</td>
-      <td>Emitir alerta</td>
+      <th>Tipo</th>
+      <th>Nombre</th>
+      <th>Dispositivo</th>
+      <th>Propiedad</th>
+      <th>Condicion</th>
+      <th>Frecuencia a actualizar</th>
     </tr>
-    <tr *ngFor="let i of [].constructor(10)">
-      <td>Text</td>
-      <td>Text</td>
-      <td>Text</td>
-      <td>Text</td>
-      <td>Text</td>
+  </thead>
+  <tbody>
+    <tr *ngFor="let regla of reglasEnergeticas">
+      <td>{{ regla.tipo }}</td>
+      <td>{{ regla.nombreRegla }}</td>
+      <td>{{ regla.nombreDispositivo }}</td>
+      <td>{{ regla.propiedad }}</td>
+      <td>{{ regla.operadorYValor }}</td>
+      <td>{{ regla.frecuencia }}</td>
     </tr>
+
   </tbody>
 </table>
 
 <div class="actions">
-  <button class="add" (click)="agregarRegla()">Agregar nueva regla</button>
+  <button class="add" (click)="agregarRegla()">Agregar regla de deteccion</button>
+  <button class="add" (click)="agregarRegla2()">Agregar regla de energia</button>
   <button class="edit">Editar regla</button>
   <button class="delete">Eliminar regla</button>
 </div>

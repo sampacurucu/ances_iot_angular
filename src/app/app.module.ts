@@ -22,6 +22,7 @@ import { StartProcesoComponent } from './features/procesos_iniciados/presentatio
 import { EndProcesoComponent } from './features/procesos_iniciados/presentation/pages/end-proceso/end-proceso.component';
 import { ViewReglasComponent } from './features/reglas/presentation/pages/view-reglas/view-reglas.component';
 import { NewReglaComponent } from './features/reglas/presentation/pages/new-regla/new-regla.component';
+import { NewReglaEnergyComponent } from './features/reglas/presentation/pages/new-regla-energy/new-regla-energy.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { NewReglaComponent } from './features/reglas/presentation/pages/new-regl
     EndProcesoComponent,
     ViewReglasComponent,
     NewReglaComponent,
+    NewReglaEnergyComponent,
     // HomeComponent,
     // HeaderComponent,
     // NewAreaComponent

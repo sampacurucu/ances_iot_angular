@@ -130,8 +130,8 @@ ngOnInit(): void {
         valor: this.condicionValor,
         descripcion: this.condicionDescripcion.trim()
       });
-
-      if (this.actividadSeleccionadaId !== this.actividadAnteriorId || !this.reglaActual) {
+      if (this.dispositivoId !== this.dispositivoAnteriorId || !this.reglaActual) {
+      // if (this.actividadSeleccionadaId !== this.actividadAnteriorId || !this.reglaActual) {
         // Cambió la actividad → nueva regla
         this.reglaActual = {
           procesoIniciadoId: this.procesoSeleccionadoId,
@@ -145,7 +145,8 @@ ngOnInit(): void {
           condiciones: []
         };
         this.reglasParaGuardar.push(this.reglaActual);
-        this.actividadAnteriorId = this.actividadSeleccionadaId;
+        // this.actividadAnteriorId = this.actividadSeleccionadaId;
+        this.dispositivoAnteriorId = this.dispositivoId;
       }
 
       // Agregar la condición actual a la regla activa
@@ -160,7 +161,7 @@ ngOnInit(): void {
       this.reglaActual.condiciones.push(nuevaCondicion);
 
       this.condicionesTabla.push({
-         nombreRegla: this.nombre,
+        nombreRegla: this.nombre,
         actividad: this.activities.find(a => a.id === Number(this.actividadSeleccionadaId))?.name || '',
         dispositivo: this.selectedDispositivo?.nombre || '',
         propiedad: this.propiedadDispositivo,
@@ -204,12 +205,20 @@ ngOnInit(): void {
     this.descripcion = '';
   }
 
+  resetCamposRegla2(): void {
+    this.nombre = '';
+    this.operadorSeleccionado = '';
+    this.descripcion = '';
+  }
+
 
 
   // Método para guardar la regla 
   reglasParaGuardar: ReglaModel[] = [];
   reglaActual: ReglaModel | null = null;
-  actividadAnteriorId: string = '';
+  // actividadAnteriorId: string = '';
+  dispositivoAnteriorId: string = '';
+
 
   condicionesTabla: {
     nombreRegla: string;
@@ -234,7 +243,9 @@ ngOnInit(): void {
         // this.mostrarModalAlerta('Reglas guardadas correctamente.');
         this.reglasParaGuardar = [];
         this.reglaActual = null;
-        this.actividadAnteriorId = '';
+        // this.actividadAnteriorId = '';
+        this.dispositivoAnteriorId = '';
+        this.router.navigate(['/view/reglas']); 
       },
       error: (error) => {
         console.error('Error al guardar reglas:', error);
@@ -243,7 +254,7 @@ ngOnInit(): void {
     });
   }
 
-   cancelar(): void {
+  cancelar(): void {
     this.router.navigate(['/view/reglas']); // esto redirige
   }
 

@@ -1,13 +1,13 @@
 <app-header></app-header>
 
-<h2>Agregar Regla Detección Actividades</h2>
+<h2>Agregar Regla Energetica</h2>
 
 <div class="main-layout">
   <!-- FORMULARIO -->
   <div class="form-grid">
     <div class="form-group">
       <label>PROCESO INICIADO</label>
-      <select id="proceso" [(ngModel)]="procesoSeleccionadoId" (change)="onProcesoChange()">
+      <select id="proceso"  [(ngModel)]="procesoSeleccionadoId" (change)="onProcesoChange()">
         <option disabled selected value="">Seleccione proceso a finalizar</option>
         <option *ngFor="let process of procesosIniciados" [value]="process.id">
           {{ process.nombreFinca }} - {{ process.nombreProceso  }} - {{ process.nombreCultivo }} - {{ process.nombreArea }} - {{ process.fechaInicio }}
@@ -21,20 +21,11 @@
       <input type="text" [value]="'Deteccion de actividad'" readonly [(ngModel)]="tipo">
     </div>
 
-    <div class="form-group">
-      <label>ACTIVIDAD A DETECTAR</label>
-      <select [(ngModel)]="actividadSeleccionadaId"  (change)="resetCamposRegla()">
-        <option disabled selected value="">Seleccione actividad</option>
-        <option *ngFor="let actividad of activities" [value]="actividad.id">
-          {{ actividad.name }}
-        </option>
-      </select>
-    </div>
 
     <div class="form-row">
       <div class="form-group half">
         <label>SELECCIONE DISPOSITIVO</label>
-        <select [(ngModel)]="selectedDispositivo" (ngModelChange)="onDispositivoChange($event)" (change)="resetCamposRegla2()">
+        <select [(ngModel)]="selectedDispositivo" (ngModelChange)="onDispositivoChange($event)">
           <!-- <option disabled value="">Seleccione un dispositivo</option> -->
           <option [ngValue]="null" disabled>Seleccione un dispositivo</option>
         <option *ngFor="let dispositivo of dispositivos" [ngValue]="dispositivo">
@@ -60,6 +51,11 @@
       <input type="text" placeholder="Ingrese un nombre" [(ngModel)]="nombre">
     </div>
 
+    <div class="form-group half">
+      <label>FRECUENCIA A ACTUALIZAR</label>
+      <input id="precision" type="number" [(ngModel)]="frecuenciaActualizar" name="precision" placeholder="Ingrese el valor esperado" />
+    </div>
+
     <div class="form-group full">
       <label>OPERADOR ENTRE CONDICIONES</label>
       <select [(ngModel)]="operadorSeleccionado">
@@ -68,7 +64,6 @@
       </select>
     </div>
 
-    
 
     <div class="form-group full">
       <label>DESCRIPCIÓN</label>
@@ -76,6 +71,7 @@
     </div>
 
     <div class="action-buttons">
+      <!-- <button class="add" >Agregar</button> -->
       <button class="add" (click)="guardarTodasLasReglas()">Agregar</button>
       <button class="cancel" (click)="cancelar()">Cancelar</button>
     </div>
@@ -87,7 +83,6 @@
       <thead>
         <tr>
           <th>Nombre Regla</th>
-          <th>Actividad a Detectar</th>
           <th>Dispositivo</th>
           <th>Propiedad</th>
           <th>Operador</th>
@@ -97,7 +92,6 @@
       <tbody>
         <tr *ngFor="let fila of condicionesTabla">
           <td>{{ fila.nombreRegla }}</td>
-          <td>{{ fila.actividad }}</td>
           <td>{{ fila.dispositivo }}</td>
           <td>{{ fila.propiedad }}</td>
           <td>{{ fila.operador }}</td>
