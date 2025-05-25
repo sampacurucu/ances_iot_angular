@@ -26,7 +26,7 @@ ngOnInit(): void {
   activities: ActivityModel[] = [];
   actividadSeleccionadaId: string = '';
 
-  operadores: string[] = ['Y', 'O'];
+  operadores: string[] = ['AND', 'OR'];
   operadorSeleccionado: string = '';
 
 

@@ -48,6 +48,13 @@ export class ReglasService {
     return this.http.get<ReglaEnergyViewModel[]>(`${this.baseUrl}/reglas/energy/proceso/${idProceso}`);
   }
 
+  //aplicar reglas energeticas por proceso iniciado
+  aplicarReglasEPorProceso(idProceso: string) {
+
+    return this.http.get(`${this.baseUrl}/evaluar/reglas/proceso/${idProceso}`);
+    
+  }
+
 
 }
 

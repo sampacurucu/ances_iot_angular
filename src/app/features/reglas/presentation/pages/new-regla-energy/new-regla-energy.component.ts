@@ -28,7 +28,7 @@ export class NewReglaEnergyComponent implements OnInit {
   tipo: string = 'Energetica';
   frecuenciaActualizar: number = 0;
 
-  operadores: string[] = ['Y', 'O'];
+  operadores: string[] = ['AND', 'OR'];
   operadorSeleccionado: string = '';
 
   dispositivos: DispositivoResumenModel[] = []; 

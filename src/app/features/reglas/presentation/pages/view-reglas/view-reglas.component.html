@@ -2,27 +2,20 @@
 
 <h2>Reglas</h2>
 
+
 <div class="filters">
-  <div class="filter">
+  <div class="filter-row">
     <label>PROCESOS INICIADOS</label>
-    <select id="proceso" [(ngModel)]="procesoSeleccionadoId" (change)="onProcesoSeleccionado()">
-    <!-- <select id="proceso" [(ngModel)]="procesoSeleccionadoId"> -->
+    <div class="filter-inline">
+      <select id="proceso" [(ngModel)]="procesoSeleccionadoId" (change)="onProcesoSeleccionado()">
         <option disabled selected value="">Seleccione proceso a finalizar</option>
         <option *ngFor="let process of procesosIniciados" [value]="process.id">
-          {{ process.nombreFinca }} - {{ process.nombreProceso  }} - {{ process.nombreCultivo }} - {{ process.nombreArea }} - {{ process.fechaInicio }}
+          {{ process.nombreFinca }} - {{ process.nombreProceso }} - {{ process.nombreCultivo }} - {{ process.nombreArea }} - {{ process.fechaInicio }}
         </option>
-    </select>
-    <!-- <select>
-      <option selected disabled>Seleccione proceso</option>
-    </select> -->
+      </select>
+      <button class="add" (click)="aplicarReglasProceso()">Aplicar reglas de deteccion</button>
+    </div>
   </div>
-
-  <!-- <div class="filter">
-    <label>TIPO DE REGLA</label>
-    <select>
-      <option selected disabled>Seleccione tipo de regla</option>
-    </select>
-  </div> -->
 </div>
 
 <table>

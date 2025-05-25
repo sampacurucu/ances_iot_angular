@@ -5,4 +5,5 @@ export interface ReglaViewModel {
     nombreDispositivo: string;
     propiedad: string;
     operadorYValor: string;
+    dispositivoId: number;
 }

@@ -53,7 +53,7 @@ export class ViewReglasComponent implements OnInit {
     this.router.navigate(['/new/regla']); 
   }
 
-   agregarRegla2(): void {
+  agregarRegla2(): void {
     this.router.navigate(['/new/regla/energy']); 
   }
 
@@ -63,5 +63,18 @@ export class ViewReglasComponent implements OnInit {
       this.loadReglasEPorProceso(this.procesoSeleccionadoId);
     }
   }
+
+  aplicarReglasProceso(): void {
+    this.reglaService.aplicarReglasEPorProceso(this.procesoSeleccionadoId).subscribe({
+      next: () => {
+        console.log('Reglas actividades aplicadas correctamente');
+      },
+      error: (err) => {
+        console.error('Error al aplicar reglas energéticas:', err);
+      }
+    });
+  }
+
+
 
 }
